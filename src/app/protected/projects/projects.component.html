@@ -1,1 +1,23 @@
-<p>projects works!</p>
+<div class="container">
+
+  <h2 class="margins-title">Company Projects</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td>{{ project.name }}</td>
+        <td>{{ project.description }}</td>
+        <td>{{ project.startDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ project.endDate | date:'dd/MM/yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

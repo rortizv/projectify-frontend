@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Project } from '../interfaces/interfaces';
+import { Component, OnInit } from '@angular/core';
+import { GetProjectsResponse, Project } from '../interfaces/interfaces';
 import { ConfigService } from '../services/config.service';
 
 @Component({
@@ -7,16 +7,22 @@ import { ConfigService } from '../services/config.service';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
 
-  public projects: Project[] = [];
+  public projects: any[] = [];
+  public resp: any;
 
   constructor(private configService: ConfigService) { }
+
+  ngOnInit(): void {
+    this.getProjects();
+  }
 
   async getProjects() {
     try {
       await this.configService.getAllProjects()
-        .subscribe((projects: Project[]) => {
+        .subscribe(resp => {
+          const { projects } = resp;
           this.projects = projects;
         });
       console.log(this.projects);

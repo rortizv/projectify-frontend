@@ -1,1 +1,21 @@
-<p>dedications works!</p>
+<div class="container">
+  <h2 class="mt-3">Dedication Hours</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Hours reported</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dedication of dedications">
+        <td>{{ dedication.project.name }}</td>
+        <td>{{ dedication.hours }}</td>
+        <td>{{ dedication.startDate }}</td>
+        <td>{{ dedication.endDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

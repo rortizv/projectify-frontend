@@ -9,8 +9,12 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class HeaderComponent {
 
+  public userName: string = '';
+
   constructor(private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+                this.userName = this.authService.userName;
+              }
 
   logout() {
     this.router.navigateByUrl('/login');

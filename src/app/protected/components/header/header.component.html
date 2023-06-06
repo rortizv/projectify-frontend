@@ -1,4 +1,7 @@
 <nav class="navbar navbar-light bg-primary p-3">
   <a class="navbar-brand text-light" routerLink="/dashboard">AdsForGood</a>
-  <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+  <div class="d-flex align-items-center">
+    <span class="text-light me-3">You're logged as <strong>{{ userName }}</strong></span>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
 </nav>

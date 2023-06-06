@@ -15,6 +15,7 @@ export class AuthService {
 
   private baseUrl: string = environment.baseUrl;
   private _user!: User;
+  public userName: string = '';
 
   get user() {
     return { ...this._user };
@@ -67,6 +68,7 @@ export class AuthService {
 
     return this.http.get<AuthResponse>(url, { headers }).pipe(
       map(resp => {
+        this.userName = resp.user.name!;
         localStorage.setItem('token', resp.token!);
         this._user = {
           uid: resp.user.uid!,
@@ -85,5 +87,10 @@ export class AuthService {
   logout() {
     localStorage.clear();
   }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
 
 }
