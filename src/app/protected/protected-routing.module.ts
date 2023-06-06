@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '',
     children: [
       { path: '', component: DashboardComponent },
+      { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
       { path: '**', redirectTo: '' },
     ]
   }

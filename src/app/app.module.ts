@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { ProtectedModule } from './protected/protected.module';
+import { ProjectsModule } from './protected/projects/projects.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProtectedModule } from './protected/protected.module';
     AppRoutingModule,
     AuthModule,
     ProtectedModule,
-    HttpClientModule
+    HttpClientModule,
+    ProjectsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
