@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="login()" class="p-3 bg-light border rounded">
+
+        <h3 class="mb-4">Login</h3>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" autocomplete="off" formControlName="email" class="form-control" placeholder="Enter your email">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" autocomplete="off" formControlName="password" class="form-control" placeholder="Enter your password">
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary">Login</button>
+        </div>
+
+        <div class="mt-4">
+          <span>Don't have an account?</span>
+          <a routerLink="/auth/register" class="ms-1">Create one here</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
