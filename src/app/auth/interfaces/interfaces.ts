@@ -1,5 +1,5 @@
 export interface AuthResponse {
-  ok: boolean;
+  ok?: boolean;
   msg?: string;
   user: User;
   token?: string;

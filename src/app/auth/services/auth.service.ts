@@ -75,7 +75,7 @@ export class AuthService {
           role: resp.user.role!,
           state: resp.user.state!,
         }
-        return resp.ok;
+        return resp.user.state;
       }),
       catchError(err => of(false))
     );

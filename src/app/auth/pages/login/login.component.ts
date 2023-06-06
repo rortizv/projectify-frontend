@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { AuthService } from '../../services/auth.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -24,19 +25,35 @@ export class LoginComponent {
     private authService: AuthService) { }
 
 
-  login() {
+  async login() {
     const { email, password } = this.myForm.value;
+    // Display loading message using SweetAlert2
+    Swal.fire({
+      title: 'Logging in',
+      text: 'Please wait...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
 
-    this.authService.login(email, password).subscribe(
+    await this.authService.login(email, password)
+    .pipe(delay(700))
+    .subscribe(
       response => {
         if (response.token) {
           this.router.navigateByUrl('/dashboard');
+          Swal.fire({
+            title: 'Login succesfull',
+            text: 'You have logged in successfully',
+            timer:700,
+            icon: 'success'});
         } else {
-          Swal.fire('Error', response.error.message, 'error');
+          Swal.fire('Error', 'Credentials are incorrect', 'error');
         }
       },
       error => {
-        Swal.fire('Error', error.message, 'error');
+        Swal.fire('Error', error, 'error');
       }
     );
   }
