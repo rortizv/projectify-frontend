@@ -10,6 +10,7 @@ import { ProjectsComponent } from './projects/projects.component';
 
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { Routes, RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   imports: [
     CommonModule,
     ProtectedRoutingModule,
-    AuthModule
+    AuthModule,
+    RouterModule
   ]
 })
 export class ProtectedModule { }

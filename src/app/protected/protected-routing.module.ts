@@ -7,17 +7,16 @@ import { ProjectsComponent } from './projects/projects.component';
 
 
 const routes: Routes = [
-
   {
     path: '',
+    component: DashboardComponent,
     children: [
-      { path: '', component: DashboardComponent },
+      { path: '', redirectTo: '', pathMatch: 'full' },
       { path: 'projects', component: ProjectsComponent },
       { path: 'dedications', component: DedicationsComponent },
       { path: '**', redirectTo: '' }
     ]
   }
-
 ];
 
 @NgModule({

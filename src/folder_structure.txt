@@ -1,0 +1,74 @@
+.
+├── app
+│   ├── app.component.html
+│   ├── app.component.scss
+│   ├── app.component.spec.ts
+│   ├── app.component.ts
+│   ├── app.module.ts
+│   ├── app-routing.module.ts
+│   ├── auth
+│   │   ├── auth.module.ts
+│   │   ├── auth-routing.module.ts
+│   │   ├── interfaces
+│   │   │   └── interfaces.ts
+│   │   ├── pages
+│   │   │   ├── login
+│   │   │   │   ├── login.component.html
+│   │   │   │   ├── login.component.scss
+│   │   │   │   ├── login.component.spec.ts
+│   │   │   │   └── login.component.ts
+│   │   │   ├── main
+│   │   │   │   ├── main.component.html
+│   │   │   │   ├── main.component.scss
+│   │   │   │   ├── main.component.spec.ts
+│   │   │   │   └── main.component.ts
+│   │   │   └── register
+│   │   │       ├── register.component.html
+│   │   │       ├── register.component.scss
+│   │   │       ├── register.component.spec.ts
+│   │   │       └── register.component.ts
+│   │   └── services
+│   │       └── auth.service.ts
+│   ├── guards
+│   │   └── validate-token.guard.ts
+│   └── protected
+│       ├── components
+│       │   ├── header
+│       │   │   ├── header.component.html
+│       │   │   ├── header.component.scss
+│       │   │   ├── header.component.spec.ts
+│       │   │   └── header.component.ts
+│       │   └── sidebar
+│       │       ├── sidebar.component.html
+│       │       ├── sidebar.component.scss
+│       │       ├── sidebar.component.spec.ts
+│       │       └── sidebar.component.ts
+│       ├── dashboard
+│       │   ├── dashboard.component.html
+│       │   ├── dashboard.component.scss
+│       │   └── dashboard.component.ts
+│       ├── dedications
+│       │   ├── dedications.component.html
+│       │   ├── dedications.component.scss
+│       │   ├── dedications.component.spec.ts
+│       │   └── dedications.component.ts
+│       ├── interfaces
+│       │   └── interfaces.ts
+│       ├── projects
+│       │   ├── projects.component.html
+│       │   ├── projects.component.scss
+│       │   └── projects.component.ts
+│       ├── protected.module.ts
+│       ├── protected-routing.module.ts
+│       └── services
+│           └── config.service.ts
+├── assets
+├── environments
+│   └── environment.ts
+├── favicon.ico
+├── folder_structure.txt
+├── index.html
+├── main.ts
+└── styles.scss
+
+20 directories, 51 files
