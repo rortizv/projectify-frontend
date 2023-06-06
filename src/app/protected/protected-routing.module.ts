@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from '../protected/dashboard/dashboard.component';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DedicationsComponent } from './dedications/dedications.component';
+import { ProjectsComponent } from './projects/projects.component';
+
 
 const routes: Routes = [
 
@@ -8,8 +12,9 @@ const routes: Routes = [
     path: '',
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
-      { path: '**', redirectTo: '' },
+      { path: 'projects', component: ProjectsComponent },
+      { path: 'dedications', component: DedicationsComponent },
+      { path: '**', redirectTo: '' }
     ]
   }
 

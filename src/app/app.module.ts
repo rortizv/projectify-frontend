@@ -4,9 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { ProtectedModule } from './protected/protected.module';
-import { ProjectsModule } from './protected/projects/projects.module';
 
 @NgModule({
   declarations: [
@@ -15,10 +12,7 @@ import { ProjectsModule } from './protected/projects/projects.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule,
-    ProtectedModule,
-    HttpClientModule,
-    ProjectsModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
