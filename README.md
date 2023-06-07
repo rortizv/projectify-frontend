@@ -1,5 +1,24 @@
 # ProjectifyFrontend
 
+Projectify app allows you to:
+
+- Create users and login authenticated with JWT
+- List all companies projects
+- Report by project and week my work hours
+- See my worked hours report by week
+- Update work hours report until last month.
+
+This Angular frontend app consumes REST API services from a NodeJS backend connected to a Mongo database.
+
+Steps to run this frontend app:
+- Clone project : ```git clone https://github.com/rortizv/projectify-frontend.git```
+- Install dependencies: ```npm i```
+- Run app local: ```ng serve -o```
+
+Production url: https://projectify-frontend-seven.vercel.app/
+Backend apiUrl: https://projectify-backend-production.up.railway.app/api
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
 ## Development server
