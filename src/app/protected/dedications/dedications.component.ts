@@ -25,6 +25,12 @@ export class DedicationsComponent implements OnInit {
   public isSunday = true;
   public isOneWeek = true;
   public projectUid = '';
+  public selectedDedication: Dedication | null = null;
+  public selectedProjectUid: string | null = null;
+  public selectedProject: Project | null = null;
+  public selectedProjectName: string | null = null;
+
+
 
   constructor(private configService: ConfigService,
     private authService: AuthService,
@@ -184,6 +190,52 @@ export class DedicationsComponent implements OnInit {
       this.isOneWeek = false;
       return false;
     }
+  }
+
+  selectDedication(dedication: Dedication) {
+    this.selectedDedication = dedication;
+    this.selectedProjectName = dedication.project.name; // Set the selected project name
+    this.populateDedicationForm();
+  }
+
+  populateDedicationForm() {
+    if (this.selectedDedication) {
+      const formattedStartDate = this.configService.formatDate(this.selectedDedication.startDate.toString());
+      const formattedEndDate = this.configService.formatDate(this.selectedDedication.endDate.toString());
+
+      this.dedicationForm.patchValue({
+        projectName: this.selectedProject,
+        hours: this.selectedDedication.hours,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate
+      });
+    }
+  }
+
+  updateDedicationWork() {
+    if (this.dedicationForm.invalid || !this.selectedDedication) {
+      return;
+    }
+
+    const updatedDedicationWork: DedicationWork = {
+      project: this.dedicationForm.get('projectName')?.value,
+      hours: this.dedicationForm.get('hours')?.value,
+      startDate: this.dedicationForm.get('startDate')?.value,
+      endDate: this.dedicationForm.get('endDate')?.value,
+      user: this.authService.user.uid
+    };
+
+    // this.configService.updateDedicationWork(this.selectedDedication.id, updatedDedicationWork)
+    //   .subscribe(
+    //     resp => {
+    //       Swal.fire('Success', 'Dedication work updated successfully', 'success');
+    //       this.clearForm();
+    //       this.refreshView();
+    //     },
+    //     (error: HttpErrorResponse) => {
+    //       Swal.fire('Error', 'An error occurred', 'error');
+    //     }
+    //   );
   }
 
 }

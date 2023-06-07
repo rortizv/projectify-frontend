@@ -31,6 +31,13 @@ export class ConfigService {
     return this.http.post(url, dedicationWork, { headers });
   }
 
+  updateDedicationWork(dedicationWork: DedicationWork) {
+    console.log(dedicationWork);
+    const url = `${this.baseUrl}/dedication-project/${dedicationWork}`;
+    const headers = new HttpHeaders().set('x-token', localStorage.getItem('token') || '');
+    return this.http.put(url, dedicationWork, { headers });
+  }
+
   get userId (): string {
     return localStorage.getItem('userId') || '';
   }
