@@ -1,6 +1,69 @@
 <div class="container">
   <h2 class="mt-3">Dedication Hours</h2>
-  <table class="table">
+  <hr>
+  <br>
+  <form [formGroup]="dedicationForm" class="mb-3 border rounded p-3">
+    <h4>Register your dedication hours</h4>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <br>
+        <label for="projectName">Project Name</label>
+        <select formControlName="projectName" id="projectName" class="form-select" required>
+          <option value="">Select a project</option>
+          <option *ngFor="let project of projects" [value]="project.uid">{{ project.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="hours">Hours</label>
+        <input type="number" formControlName="hours" id="hours" class="form-control" min="0" max="45" required>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="startDate">Start Date</label>
+        <input
+          type="date"
+          formControlName="startDate"
+          class="form-control"
+          required
+          (input)="onDateInput($event, 'startDate')">
+        <div *ngIf="!isMonday || dedicationForm.get('startDate')?.invalid && dedicationForm.get('startDate')?.touched"
+          class="text-danger mt-1">
+          Please select a Monday.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="endDate">End Date</label>
+        <input
+          type="date"
+          formControlName="endDate"
+          id="endDate"
+          class="form-control"
+          required
+          (input)="onDateInput($event, 'endDate')">
+        <div *ngIf="!isSunday || dedicationForm.get('endDate')?.invalid && dedicationForm.get('endDate')?.touched"
+          class="text-danger mt-1">
+          Please select a Sunday.
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isOneWeek" class="text-danger text-center">
+      Difference between dates must be 1 week
+    </div>
+  </form>
+
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <div class="me-2">
+      <button type="submit" (click)="createDedicationWork()" [disabled]="dedicationForm.invalid"
+        class="btn btn-primary">Register</button>
+    </div>
+    <div>
+      <button type="button" (click)="clearForm()" class="btn btn-secondary">Clear</button>
+    </div>
+  </div>
+  <hr>
+
+  <h4 class="text-center" *ngIf="dedications.length===0">You haven't registered any dedication work hours to any project yet</h4>
+
+  <table class="table" *ngIf="dedications.length>0">
     <thead>
       <tr>
         <th>Project Name</th>

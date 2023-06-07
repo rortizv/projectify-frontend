@@ -2,7 +2,9 @@
 
   <h2 class="margins-title">Company Projects</h2>
 
-  <table class="table table-striped">
+  <h4 class="text-center" *ngIf="projects.length===0">Company has no projects yet</h4>
+
+  <table class="table table-striped" *ngIf="projects.length>0">
     <thead>
       <tr>
         <th>Name</th>

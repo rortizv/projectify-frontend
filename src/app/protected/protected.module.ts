@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthModule } from '../auth/auth.module';
 import { ProtectedRoutingModule } from './protected-routing.module';
@@ -10,7 +11,7 @@ import { ProjectsComponent } from './projects/projects.component';
 
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { Routes, RouterModule } from '@angular/router';
     CommonModule,
     ProtectedRoutingModule,
     AuthModule,
+    ReactiveFormsModule,
     RouterModule
   ]
 })

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { DedicationReport, GetProjectsResponse } from '../interfaces/interfaces';
+import { DedicationReport, DedicationWork, GetProjectsResponse } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -23,6 +23,12 @@ export class ConfigService {
     const url = `${this.baseUrl}/dedication-project/${userId}`;
     const headers = new HttpHeaders().set('x-token', localStorage.getItem('token') || '');
     return this.http.get<DedicationReport>(url, { headers });
+  }
+
+  createDedicationWork(dedicationWork: DedicationWork) {
+    const url = `${this.baseUrl}/dedication-project`;
+    const headers = new HttpHeaders().set('x-token', localStorage.getItem('token') || '');
+    return this.http.post(url, dedicationWork, { headers });
   }
 
   get userId (): string {

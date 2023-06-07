@@ -42,8 +42,6 @@ export class RegisterComponent {
     try {
       const resp: AuthResponse = await lastValueFrom(this.authService.register(name, email, password));
 
-      console.log(resp);
-
       if (resp.user?.uid || resp.token) {
         this.router.navigateByUrl('/dashboard');
         Swal.fire({
@@ -55,7 +53,6 @@ export class RegisterComponent {
         Swal.fire('Error', resp.msg, 'error');
       }
     } catch (error) {
-      console.log(error);
       Swal.fire('Error', 'An error occurred while creating the user', 'error');
     }
   }

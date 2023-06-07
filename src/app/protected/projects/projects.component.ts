@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetProjectsResponse, Project } from '../interfaces/interfaces';
 import { ConfigService } from '../services/config.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-projects',
@@ -9,25 +10,24 @@ import { ConfigService } from '../services/config.service';
 })
 export class ProjectsComponent implements OnInit {
 
-  public projects: any[] = [];
-  public resp: any;
+  public projects: Project[] = [];
 
   constructor(private configService: ConfigService) { }
 
   ngOnInit(): void {
-    this.getProjects();
+    this.getCompanyProjects();
   }
 
-  async getProjects() {
+  async getCompanyProjects() {
     try {
       await this.configService.getAllProjects()
         .subscribe(resp => {
           const { projects } = resp;
           this.projects = projects;
         });
-      console.log(this.projects);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      Swal.fire('Error', error, 'error');
     }
   }
 

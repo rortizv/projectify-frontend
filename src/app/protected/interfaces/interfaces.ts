@@ -24,6 +24,14 @@ export interface Dedication {
   user: string;
 }
 
+export interface DedicationWork {
+  startDate: String;
+  endDate: String;
+  hours: number;
+  project: string;
+  user: string;
+}
+
 export interface Project {
   uid: string;
   name: string;
