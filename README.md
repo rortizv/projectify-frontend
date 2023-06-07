@@ -15,8 +15,10 @@ Steps to run this frontend app:
 - Install dependencies: ```npm i```
 - Run app local: ```ng serve -o```
 
-Production url: https://projectify-frontend-seven.vercel.app/
-Backend apiUrl: https://projectify-backend-production.up.railway.app/api
+
+Production URLS:
+- Production url: https://projectify-frontend-seven.vercel.app/
+- Backend apiUrl: https://projectify-backend-production.up.railway.app/api
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
