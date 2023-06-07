@@ -29,6 +29,7 @@ export class DedicationsComponent implements OnInit {
   public selectedProjectUid: string | null = null;
   public selectedProject: Project | null = null;
   public selectedProjectName: string | null = null;
+  public isUpdating = false;
 
 
 
@@ -53,6 +54,7 @@ export class DedicationsComponent implements OnInit {
       const userId = this.authService.user.uid;
       await this.configService.getDedicationsByUser(userId)
         .subscribe(resp => {
+          console.log(resp);
           this.dedications = resp.dedications;
           this.dedications = resp.dedications.map(dedication => {
             dedication.startDate = this.configService.formatDate(dedication.startDate.toString());
@@ -101,6 +103,39 @@ export class DedicationsComponent implements OnInit {
     }
   }
 
+  updateDedicationWork() {
+    try {
+      if (this.dedicationForm.invalid || !this.selectedDedication) {
+        return;
+      }
+
+      const updatedDedicationWork: DedicationWork = {
+        project: this.dedicationForm.get('projectName')?.value,
+        hours: this.dedicationForm.get('hours')?.value,
+        startDate: this.dedicationForm.get('startDate')?.value,
+        endDate: this.dedicationForm.get('endDate')?.value,
+      };
+
+      console.log(updatedDedicationWork);
+      this.selectedDedication._id;
+
+      this.configService.updateDedicationWork(this.selectedDedication._id!, updatedDedicationWork)
+        .subscribe(
+          resp => {
+            Swal.fire('Success', 'Dedication work updated successfully', 'success');
+            this.clearForm();
+            this.refreshView();
+          },
+          (error: HttpErrorResponse) => {
+            Swal.fire('Error', 'You can only update dedications from the last month', 'error');
+          }
+        );
+    } catch (error: any) {
+      console.error(error);
+      Swal.fire('Error', error, 'error');
+    }
+  }
+
   refreshView() {
     this.getDedicationsByUser();
   }
@@ -120,6 +155,7 @@ export class DedicationsComponent implements OnInit {
 
   clearForm() {
     this.dedicationForm.reset();
+    this.isUpdating = false;
   }
 
   onDateInput(event: any, date: any): boolean {
@@ -193,15 +229,17 @@ export class DedicationsComponent implements OnInit {
   }
 
   selectDedication(dedication: Dedication) {
+    console.log(dedication);
     this.selectedDedication = dedication;
     this.selectedProjectName = dedication.project.name; // Set the selected project name
     this.populateDedicationForm();
+    this.isUpdating = true;
   }
 
   populateDedicationForm() {
     if (this.selectedDedication) {
-      const formattedStartDate = this.configService.formatDate(this.selectedDedication.startDate.toString());
-      const formattedEndDate = this.configService.formatDate(this.selectedDedication.endDate.toString());
+      const formattedStartDate = this.configService.formatDate2(this.selectedDedication.startDate.toString());
+      const formattedEndDate = this.configService.formatDate2(this.selectedDedication.endDate.toString());
 
       this.dedicationForm.patchValue({
         projectName: this.selectedProject,
@@ -210,32 +248,6 @@ export class DedicationsComponent implements OnInit {
         endDate: formattedEndDate
       });
     }
-  }
-
-  updateDedicationWork() {
-    if (this.dedicationForm.invalid || !this.selectedDedication) {
-      return;
-    }
-
-    const updatedDedicationWork: DedicationWork = {
-      project: this.dedicationForm.get('projectName')?.value,
-      hours: this.dedicationForm.get('hours')?.value,
-      startDate: this.dedicationForm.get('startDate')?.value,
-      endDate: this.dedicationForm.get('endDate')?.value,
-      user: this.authService.user.uid
-    };
-
-    // this.configService.updateDedicationWork(this.selectedDedication.id, updatedDedicationWork)
-    //   .subscribe(
-    //     resp => {
-    //       Swal.fire('Success', 'Dedication work updated successfully', 'success');
-    //       this.clearForm();
-    //       this.refreshView();
-    //     },
-    //     (error: HttpErrorResponse) => {
-    //       Swal.fire('Error', 'An error occurred', 'error');
-    //     }
-    //   );
   }
 
 }

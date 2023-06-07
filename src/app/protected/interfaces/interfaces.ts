@@ -17,6 +17,7 @@ export interface DedicationReport {
 }
 
 export interface Dedication {
+  _id?: string;
   startDate: String;
   endDate: String;
   hours: number;
@@ -29,7 +30,7 @@ export interface DedicationWork {
   endDate: String;
   hours: number;
   project: string;
-  user: string;
+  user?: string;
 }
 
 export interface Project {

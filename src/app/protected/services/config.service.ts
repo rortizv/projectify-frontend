@@ -31,9 +31,9 @@ export class ConfigService {
     return this.http.post(url, dedicationWork, { headers });
   }
 
-  updateDedicationWork(dedicationWork: DedicationWork) {
+  updateDedicationWork(dedicationId: string, dedicationWork: DedicationWork) {
     console.log(dedicationWork);
-    const url = `${this.baseUrl}/dedication-project/${dedicationWork}`;
+    const url = `${this.baseUrl}/dedication-project/${dedicationId}`;
     const headers = new HttpHeaders().set('x-token', localStorage.getItem('token') || '');
     return this.http.put(url, dedicationWork, { headers });
   }
@@ -42,10 +42,19 @@ export class ConfigService {
     return localStorage.getItem('userId') || '';
   }
 
-  // format date from '2021-08-01T00:00:00.000Z' to 'DD-MM-YYYY'
+  // format date from '2021-08-01T00:00:00.000Z' to 'YYYY-MM-DD'
   formatDate(date: string): string {
     const dateObj = new Date(date);
     return dateObj.toLocaleDateString();
+  }
+
+  formatDate2(dateString: string) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
   }
 
 }
