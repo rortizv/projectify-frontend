@@ -1,4 +1,10 @@
+// export const environment = {
+//   production: true,
+//   baseUrl: 'https://projectify-backend-production.up.railway.app/api'
+// };
+
+
 export const environment = {
-  production: false,
-  baseUrl: 'http://localhost:3000/api'
+  production: true,
+  baseUrl: 'https://projectify-backend-production.up.railway.app/api'
 };
